@@ -1,0 +1,25 @@
+name: build
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+ 
+    strategy:
+        matrix:
+            container: 
+            - unbound-exporter
+
+    name: ${{ matrix.container }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: docker build . --file Dockerfile --tag github.com/mrtazz/containers/${{ matrix.container }}
+        working-directory: containers/${{ matrix.container }}
