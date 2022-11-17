@@ -1,2 +1,2 @@
-# containers
-place to build some public containers
+# artefacts
+place to build some public containers and other artefacts
